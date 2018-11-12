@@ -53,9 +53,6 @@ RUN     groupadd -g 999 asterisk && useradd -s /bin/false -d /var/lib/asterisk -
         chown -R asterisk:asterisk /var/log/asterisk && \
         chown asterisk:asterisk /var/run/asterisk && \
         ldconfig
-        
-COPY    docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
 
 USER 999:999
 CMD ["asterisk", "-mqf"]
