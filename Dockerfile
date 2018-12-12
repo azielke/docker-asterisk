@@ -10,9 +10,9 @@ RUN     sed -i -e 's:# deb-src :deb-src :' /etc/apt/sources.list && \
         echo "Etc/UTC" > /etc/timezone && \
         apt-get -y build-dep asterisk
 
-RUN     wget -O asterisk.tar.gz http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16.0.1.tar.gz && \
+RUN     wget -O asterisk.tar.gz http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16.1.0.tar.gz && \
         tar xzf asterisk.tar.gz && \
-        cd asterisk-16.0.1 && \
+        cd asterisk-16.1.0 && \
         ./configure --without-dahdi \
         && make -j$(grep -c ^processor /proc/cpuinfo) && make install
 
