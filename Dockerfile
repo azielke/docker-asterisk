@@ -1,4 +1,6 @@
-FROM ubuntu:18.04 as build
+ARG     asterisk_version=16.4.0
+
+FROM    ubuntu:18.04 as build
 
 RUN     sed -i -e 's:# deb-src :deb-src :' /etc/apt/sources.list && \
         apt-get update && \
@@ -10,14 +12,14 @@ RUN     sed -i -e 's:# deb-src :deb-src :' /etc/apt/sources.list && \
         echo "Etc/UTC" > /etc/timezone && \
         apt-get -y build-dep asterisk
 
-RUN     wget -O asterisk.tar.gz http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-16.4.0.tar.gz && \
+RUN     wget -O asterisk.tar.gz http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-${asterisk_version}.tar.gz && \
         tar xzf asterisk.tar.gz && \
-        cd asterisk-16.4.0 && \
+        cd asterisk-${asterisk_version} && \
         ./configure --without-dahdi \
         && make -j$(grep -c ^processor /proc/cpuinfo) && make install
 
 
-FROM ubuntu:18.04
+FROM    ubuntu:18.04
 RUN     apt-get update && \
         apt-get -y install debconf-utils && \
         echo "libvpb1 libvpb1/countrycode string 49" | debconf-set-selections && \
