@@ -1,6 +1,5 @@
-ARG     asterisk_version=16.4.1
-
 FROM    ubuntu:18.04 as build
+ARG     asterisk_version=16.4.1
 
 RUN     sed -i -e 's:# deb-src :deb-src :' /etc/apt/sources.list && \
         apt-get update && \
