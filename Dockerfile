@@ -1,4 +1,4 @@
-ARG     asterisk_version=16.4.0
+ARG     asterisk_version=16.4.1
 
 FROM    ubuntu:18.04 as build
 
