@@ -1,5 +1,4 @@
 FROM    ubuntu:18.04 as build
-ARG     asterisk_version
 
 RUN     sed -i -e 's:# deb-src :deb-src :' /etc/apt/sources.list && \
         apt-get update && \
@@ -11,6 +10,7 @@ RUN     sed -i -e 's:# deb-src :deb-src :' /etc/apt/sources.list && \
         echo "Etc/UTC" > /etc/timezone && \
         apt-get -y build-dep asterisk
 
+ARG     asterisk_version
 RUN     wget -O asterisk.tar.gz http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-${asterisk_version}.tar.gz && \
         tar xzf asterisk.tar.gz && \
         cd asterisk-${asterisk_version} && \

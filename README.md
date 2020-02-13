@@ -1,5 +1,6 @@
 # Supported tags
-* 16, latest
+* 16.8.0, 16, latest
+* 17.2.0, 17
 
 # How to use this image
 
