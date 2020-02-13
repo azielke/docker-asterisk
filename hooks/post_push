@@ -1,2 +1,3 @@
+#!/bin/sh
 docker tag $IMAGE_NAME $DOCKER_REPO:16
 docker push $DOCKER_REPO:16

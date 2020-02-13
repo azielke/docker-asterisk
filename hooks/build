@@ -1,1 +1,2 @@
+#!/bin/sh
 docker build --build-arg asterisk_version=16.8.0 -t $IMAGE_NAME .
