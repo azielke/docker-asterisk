@@ -1,9 +1,15 @@
-#!/bin/sh
-docker tag $IMAGE_NAME $DOCKER_REPO:16
-docker tag $IMAGE_NAME $DOCKER_REPO:16.8.0
-docker push $DOCKER_REPO:16
-docker push $DOCKER_REPO:16.8.0
+#!/bin/bash
+. versions
 
-docker tag $DOCKER_REPO:17.2.0 $DOCKER_REPO:17
-docker push $DOCKER_REPO:17
-docker push $DOCKER_REPO:17.2.0
+refLatest="AST_${AST_LATEST}"
+docker tag $IMAGE_NAME $DOCKER_REPO:$AST_LATEST
+docker tag $IMAGE_NAME $DOCKER_REPO:${!refLatest}
+docker push $DOCKER_REPO:$AST_LATEST
+docker push $DOCKER_REPO:${!refLatest}
+
+for v in ${AST_VERSIONS}; do
+    refVersion="AST_${v}"
+    docker tag $DOCKER_REPO:${!refVersion} $DOCKER_REPO:${v}
+    docker push $DOCKER_REPO:${v}
+    docker push $DOCKER_REPO:${!refVersion}
+done

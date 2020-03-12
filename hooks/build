@@ -1,3 +1,10 @@
-#!/bin/sh
-docker build --build-arg asterisk_version=16.8.0 -t $IMAGE_NAME .
-docker build --build-arg asterisk_version=17.2.0 -t $DOCKER_REPO:17.2.0 .
+#!/bin/bash
+. versions
+
+refLatest="AST_${AST_LATEST}"
+docker build --build-arg asterisk_version=${!refLatest} -t $IMAGE_NAME .
+
+for v in ${AST_VERSIONS}; do
+    refVersion="AST_${v}"
+    docker build --build-arg asterisk_version=${!refVersion} -t $DOCKER_REPO:${!refVersion} .
+done
