@@ -1,6 +1,6 @@
 # Supported tags
-* 16.8.0, 16, latest
-* 17.2.0, 17
+* 17.3.0, 17, latest
+* 16.10.0, 16
 
 # How to use this image
 
@@ -22,7 +22,7 @@ As SIP and NAT might cause problems - especially if you want to use the asterisk
 version: '2.4'
 services:
   asterisk:
-    image: azielke/asterisk:16
+    image: azielke/asterisk
     container_name: asterisk
     restart: always
     network_mode: host

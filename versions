@@ -1,8 +1,8 @@
 # which version to tag "latest":
-AST_LATEST="16"
+AST_LATEST="17"
 # other versions:
-AST_VERSIONS="17"
+AST_VERSIONS="16"
 #
 # actual versions to build:
-AST_16=16.9.0
+AST_16=16.10.0
 AST_17=17.3.0
