@@ -14,7 +14,7 @@ ARG     asterisk_version
 RUN     wget -O asterisk.tar.gz http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-${asterisk_version}.tar.gz && \
         tar xzf asterisk.tar.gz && \
         cd asterisk-${asterisk_version} && \
-        ./configure --without-dahdi \
+        ./configure --without-dahdi --with-pjproject-bundled \
         && make ASTDBDIR=/var/lib/asterisk/db -j$(grep -c ^processor /proc/cpuinfo) && make install
 
 
@@ -46,7 +46,7 @@ COPY --from=build   /usr/sbin/astcanary \
                     /usr/sbin/rasterisk \
                     /usr/sbin/safe_asterisk \
                     /usr/sbin/
-VOLUME  [ "/var/lib/asterisk/db" ]
+VOLUME  [ "/var/lib/asterisk/db", "/var/spool/asterisk/voicemail" ]
 RUN     groupadd -g 999 asterisk && useradd -s /bin/false -d /var/lib/asterisk -g asterisk -u 999 asterisk && \
         mkdir -p /var/run/asterisk /var/log/asterisk && \
         chown -R asterisk:asterisk /var/lib/asterisk && \

@@ -1,15 +1,19 @@
 #!/bin/bash
+set -eo pipefail
+
 . versions
 
 refLatest="AST_${AST_LATEST}"
 docker tag $IMAGE_NAME $DOCKER_REPO:$AST_LATEST
 docker tag $IMAGE_NAME $DOCKER_REPO:${!refLatest}
-docker push $DOCKER_REPO:$AST_LATEST
-docker push $DOCKER_REPO:${!refLatest}
+#docker push $DOCKER_REPO:$AST_LATEST
+#docker push $DOCKER_REPO:${!refLatest}
+
+docker tag $DOCKER_REPO:${AST_LTS} $DOCKER_REPO:lts
 
 for v in ${AST_VERSIONS}; do
     refVersion="AST_${v}"
     docker tag $DOCKER_REPO:${!refVersion} $DOCKER_REPO:${v}
-    docker push $DOCKER_REPO:${v}
-    docker push $DOCKER_REPO:${!refVersion}
+    #docker push $DOCKER_REPO:${v}
+    #docker push $DOCKER_REPO:${!refVersion}
 done

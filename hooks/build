@@ -1,4 +1,6 @@
 #!/bin/bash
+set -eo pipefail
+
 . versions
 
 refLatest="AST_${AST_LATEST}"
