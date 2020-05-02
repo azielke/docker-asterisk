@@ -15,7 +15,7 @@ RUN     wget -O asterisk.tar.gz http://downloads.asterisk.org/pub/telephony/aste
         tar xzf asterisk.tar.gz && \
         cd asterisk-${asterisk_version} && \
         ./configure --without-dahdi \
-        && make -j$(grep -c ^processor /proc/cpuinfo) && make install
+        && make ASTDBDIR=/var/lib/asterisk/db -j$(grep -c ^processor /proc/cpuinfo) && make install
 
 
 FROM    ubuntu:18.04
@@ -46,7 +46,7 @@ COPY --from=build   /usr/sbin/astcanary \
                     /usr/sbin/rasterisk \
                     /usr/sbin/safe_asterisk \
                     /usr/sbin/
-
+VOLUME  [ "/var/lib/asterisk/db" ]
 RUN     groupadd -g 999 asterisk && useradd -s /bin/false -d /var/lib/asterisk -g asterisk -u 999 asterisk && \
         mkdir -p /var/run/asterisk /var/log/asterisk && \
         chown -R asterisk:asterisk /var/lib/asterisk && \
