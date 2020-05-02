@@ -26,7 +26,7 @@ RUN     apt-get update && \
         echo "tzdata tzdata/Zones/Etc select UTC"    | debconf-set-selections && \
         echo "Etc/UTC" > /etc/timezone && \
         export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true && \
-        apt-get -y install libcap2 libedit2 libjansson4 libpopt0 libsqlite3-0 libssl1.1 libsystemd0 liburiparser1 libuuid1 libxml2 libxslt1.1 \
+        apt-get -y install gosu libcap2 libedit2 libjansson4 libpopt0 libsqlite3-0 libssl1.1 libsystemd0 liburiparser1 libuuid1 libxml2 libxslt1.1 \
             libjack0 libresample1 libodbc1 libpq5 libsdl1.2debian libcurl4 libgsm1 liblua5.1-0 libgmime-3.0-0 libical3 libiksemel3 libneon27-gnutls \
             libportaudio2 libpri1.4 libradcli4 libspandsp2 libspeex1 libspeexdsp1 libsqlite0 libsrtp2-1 libss7-2.0 libsybdb5 libtonezone2.0 libvorbisfile3 && \
         apt-get clean
@@ -57,6 +57,5 @@ RUN     groupadd -g 999 asterisk && useradd -s /bin/false -d /var/lib/asterisk -
 
 ADD    docker-entrypoint.sh /docker-entrypoint.sh
 
-USER 999:999
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 CMD ["asterisk", "-mqf"]
