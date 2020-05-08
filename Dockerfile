@@ -15,6 +15,7 @@ RUN     wget -O asterisk.tar.gz http://downloads.asterisk.org/pub/telephony/aste
         tar xzf asterisk.tar.gz && \
         cd asterisk-${asterisk_version} && \
         ./configure --without-dahdi --with-pjproject-bundled \
+        && menuselect/menuselect --disable BUILD_NATIVE menuselect.makeopts \
         && make ASTDBDIR=/var/lib/asterisk/db -j$(grep -c ^processor /proc/cpuinfo) && make install
 
 
