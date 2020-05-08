@@ -12,9 +12,10 @@ RUN     sed -i -e 's:# deb-src :deb-src :' /etc/apt/sources.list && \
 
 ARG     asterisk_version
 RUN     wget -O asterisk.tar.gz http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-${asterisk_version}.tar.gz && \
-        tar xzf asterisk.tar.gz && \
-        cd asterisk-${asterisk_version} && \
+        tar xzf asterisk.tar.gz
+RUN     cd asterisk-${asterisk_version} && \
         ./configure --without-dahdi --with-pjproject-bundled \
+        && make menuselect.makeopts \
         && menuselect/menuselect --disable BUILD_NATIVE menuselect.makeopts \
         && make ASTDBDIR=/var/lib/asterisk/db -j$(grep -c ^processor /proc/cpuinfo) && make install
 
