@@ -1,7 +1,7 @@
 # Supported tags
-* 17.4.0, 17, latest
-* 16.10.0, 16, lts
-* 13.33.0, 13
+* 17.5.0, 17, latest
+* 16.11.0, 16, lts
+* 13.34.0, 13
 
 The `latest` tag will always follow the latest standard release (15, 16, 17, ...). The `lts` tag will follow LTS-Releases (13, 16, ...). Using this tags will result in an major update from time to time. If you want to stay within the same version, use a version tag like `16`, `17`, ...
 
