@@ -1,14 +1,15 @@
 # which version to tag "latest":
-AST_LATEST="17"
+AST_LATEST="18"
 
 # which version to tag "lts":
 AST_LTS="16"
 
-# other versions:
-AST_VERSIONS="16 13"
+# other versions (specify all except latest):
+AST_VERSIONS="17 16 13"
 
 #
 # actual versions to build:
-AST_13=13.36.0
-AST_16=16.13.0
-AST_17=17.7.0
+AST_13=13.37.0
+AST_16=16.14.0
+AST_17=17.8.0
+AST_18=18.0.0
