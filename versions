@@ -10,6 +10,6 @@ AST_VERSIONS="17 16 13"
 #
 # actual versions to build:
 AST_13=13.38.1
-AST_16=16.15.1
+AST_16=16.16.0
 AST_17=17.9.1
-AST_18=18.1.1
+AST_18=18.2.0
