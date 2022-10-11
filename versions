@@ -5,10 +5,11 @@ AST_LATEST="19"
 AST_LTS="18"
 
 # other versions (specify all except latest):
-AST_VERSIONS="16 18"
+AST_VERSIONS="16 18 20"
 
 #
 # actual versions to build:
-AST_16=16.27.0
-AST_18=18.13.0
-AST_19=19.5.0
+AST_20=20.0.0-rc2
+AST_16=16.28.0
+AST_18=18.14.0
+AST_19=19.6.0
